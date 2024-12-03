@@ -32,3 +32,21 @@ def guessing():
     resultLabel["text"] = msg
     attemptLabel["text"] = f"시도 횟수: {attempt_count}"
     guessField.delete(0, END)
+    
+# 점수 계산 및 랭킹 업데이트
+def calculate_score(username):
+    global rankings
+    score = max(100 - attempt_count, 0)  # 시도 횟수가 많을수록 점수는 적어짐
+    rankings.append((username, score))
+    rankings = sorted(rankings, key=lambda x: -x[1])  # 점수 순 정렬
+    update_rankings()
+
+# 랭킹 업데이트 함수
+def update_rankings():
+    rankingText = "\n".join([f"{i + 1}. {name} - {score}" for i, (name, score) in enumerate(rankings)])
+    rankingLabel["text"] = f"랭킹:\n{rankingText}"
+
+# 랭킹 보기 함수
+def show_rankings():
+    update_rankings()
+    rankingWindow.deiconify()
