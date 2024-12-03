@@ -50,3 +50,9 @@ def update_rankings():
 def show_rankings():
     update_rankings()
     rankingWindow.deiconify()
+    
+# 힌트 제공 함수
+def give_hint():
+    hint_min = max(1, answer - 10)
+    hint_max = min(100, answer + 10)
+    hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
