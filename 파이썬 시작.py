@@ -56,3 +56,13 @@ def give_hint():
     hint_min = max(1, answer - 10)
     hint_max = min(100, answer + 10)
     hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
+    
+# 게임 초기화 함수
+def reset_game():
+    global answer, attempt_count
+    answer = random.randint(1, 100)
+    attempt_count = 0
+    resultLabel["text"] = ""
+    hintLabel["text"] = ""
+    attemptLabel["text"] = "시도 횟수: 0"
+    guessField.delete(0, END)
