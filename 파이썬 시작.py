@@ -66,3 +66,9 @@ def reset_game():
     hintLabel["text"] = ""
     attemptLabel["text"] = "시도 횟수: 0"
     guessField.delete(0, END)
+
+# 캔버스 색상 변경 함수
+def change_canvas_color():
+    color = random.choice(colors)
+    canvas_bottom.config(bg=color)
+    window.after(30000, change_canvas_color)  # 30초마다 실행
