@@ -57,6 +57,7 @@ def give_hint():
     hint_max = min(100, answer + 10)
     hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
 
+
 # 애니메이션 함수 (공과 풍선)
 def animate_ball_and_balloons():
     global ball_x, ball_dx, balloon_x_left, balloon_x_right, balloon_dx_left, balloon_dx_right
@@ -84,4 +85,21 @@ def animate_ball_and_balloons():
 
     # 50ms마다 애니메이션 갱신
     window.after(50, animate_ball_and_balloons)
+
     
+# 게임 초기화 함수
+def reset_game():
+    global answer, attempt_count
+    answer = random.randint(1, 100)
+    attempt_count = 0
+    resultLabel["text"] = ""
+    hintLabel["text"] = ""
+    attemptLabel["text"] = "시도 횟수: 0"
+    guessField.delete(0, END)
+
+# 캔버스 색상 변경 함수
+def change_canvas_color():
+    color = random.choice(colors)
+    canvas_bottom.config(bg=color)
+    window.after(30000, change_canvas_color)  # 30초마다 실행
+
