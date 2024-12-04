@@ -56,3 +56,10 @@ def give_hint():
     hint_min = max(1, answer - 10)
     hint_max = min(100, answer + 10)
     hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
+
+# 풍선 애니메이션을 위한 변수
+balloon_x_left = 0
+balloon_x_right = 600
+balloon_y = random.randint(50, 400)
+balloon_dx_left = 3  # 왼쪽으로 가는 풍선 속도
+balloon_dx_right = -3  # 오른쪽으로 가는 풍선 속도
