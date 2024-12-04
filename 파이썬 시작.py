@@ -56,3 +56,8 @@ def give_hint():
     hint_min = max(1, answer - 10)
     hint_max = min(100, answer + 10)
     hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
+    
+# 공 애니메이션을 위한 변수
+ball_x = 50
+ball_y = 450
+ball_dx = 5  # 공의 이동 속도
