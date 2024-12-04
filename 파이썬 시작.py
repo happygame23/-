@@ -56,3 +56,32 @@ def give_hint():
     hint_min = max(1, answer - 10)
     hint_max = min(100, answer + 10)
     hintLabel["text"] = f"힌트: {hint_min} ~ {hint_max}"
+
+# 애니메이션 함수 (공과 풍선)
+def animate_ball_and_balloons():
+    global ball_x, ball_dx, balloon_x_left, balloon_x_right, balloon_dx_left, balloon_dx_right
+
+    # 공 애니메이션 (왼쪽, 오른쪽 끝에 닿으면 방향 반전)
+    if ball_x + 20 > 600 or ball_x - 20 < 0:
+        ball_dx = -ball_dx
+    ball_x += ball_dx
+    canvas_bottom.delete("ball")  # 이전 공 지우기
+    canvas_bottom.create_oval(ball_x - 20, ball_y - 20, ball_x + 20, ball_y + 20, fill="red", tags="ball")
+
+    # 왼쪽에서 오른쪽으로 날아가는 풍선
+    if balloon_x_left + 40 > 600:  # 풍선이 화면 오른쪽 끝에 닿으면 왼쪽으로 방향 반전
+        balloon_dx_left = -balloon_dx_left
+    balloon_x_left += balloon_dx_left
+    canvas_bottom.delete("balloon_left")  # 이전 풍선 지우기
+    canvas_bottom.create_oval(balloon_x_left, balloon_y, balloon_x_left + 40, balloon_y + 60, fill="blue", tags="balloon_left")
+
+    # 오른쪽에서 왼쪽으로 날아가는 풍선
+    if balloon_x_right - 40 < 0:  # 풍선이 화면 왼쪽 끝에 닿으면 오른쪽으로 방향 반전
+        balloon_dx_right = -balloon_dx_right
+    balloon_x_right += balloon_dx_right
+    canvas_bottom.delete("balloon_right")  # 이전 풍선 지우기
+    canvas_bottom.create_oval(balloon_x_right - 40, balloon_y, balloon_x_right, balloon_y + 60, fill="green", tags="balloon_right")
+
+    # 50ms마다 애니메이션 갱신
+    window.after(50, animate_ball_and_balloons)
+    
